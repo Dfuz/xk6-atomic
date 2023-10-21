@@ -81,6 +81,8 @@ func (mi *ModuleInstance) newCounter(c goja.ConstructorCall) *goja.Object {
 		"value", rt.ToValue(cnt.Value), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
 		"inc", rt.ToValue(cnt.Inc), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+	must(rt, obj.DefineDataProperty(
+		"dec", rt.ToValue(cnt.Dec), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
 
 	return obj
 }

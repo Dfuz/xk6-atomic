@@ -10,11 +10,18 @@ import { Counter } from 'k6/x/atomic';
 let counter = new Counter("some_id");
 
 export default () => {
-   console.log("__VU:", __VU, "__ITER:", __ITER);
-
-   console.log(`increase and print the current value: ${counter.inc()}`);
+   // increase and store the current value
+   let current = counter.inc();
+   console.log("__VU:", __VU, "__ITER:", __ITER, ` current value is: ${current}`);
 }
 ```
+
+The `Counter` class has the following methods:
+
+* `inc()` - increase the counter by 1 and return the current value
+* `dec()` - decrease the counter by 1 and return the current value
+* `add(n)` - increase (or decrease) the counter by `n` and return the current value
+* `value()` - return the current value
 
 See examples for more.
 
@@ -25,13 +32,12 @@ See examples for more.
 * [xk6](https://github.com/grafana/xk6) (`go install go.k6.io/xk6/cmd/xk6@lates`)
 
 
-
 ## Getting started  
 
 1. Build the k6's binary with the module:
 
   ```shell
-  $ make build
+  $ xk6 build v0.47.0 --with github.com/olegbespalov/xk6-atomic
   ```
 
 2. Run the example:

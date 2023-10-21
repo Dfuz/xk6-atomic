@@ -13,6 +13,11 @@ func (c *counter) Inc() int64 {
 	return atomic.AddInt64(&c.i, 1)
 }
 
+// Dec decrements the counter and returns the new value.
+func (c *counter) Dec() int64 {
+	return atomic.AddInt64(&c.i, -1)
+}
+
 // Add adds i to the counter and returns the new value.
 func (c *counter) Add(i int64) int64 {
 	return atomic.AddInt64(&c.i, i)

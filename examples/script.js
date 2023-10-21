@@ -1,11 +1,9 @@
 import { Counter } from 'k6/x/atomic';
 
-let counter1 = new Counter("id1");
-let counter2 = new Counter("id2");
+let counter = new Counter("some_id");
 
 export default () => {
-   console.log("__VU:", __VU, "__ITER:", __ITER);
-
-   console.log(`counter1 value: ${counter1.inc()}`);
-   console.log(`counter2 value: ${counter2.inc()}`);
+   // increase and store the current value
+   let current = counter.inc();
+   console.log("__VU:", __VU, "__ITER:", __ITER, ` current value is: ${current}`);
 }
