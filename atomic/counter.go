@@ -23,7 +23,7 @@ func (c *counter) Add(i int64) int64 {
 	return atomic.AddInt64(&c.i, i)
 }
 
-// Value returns the current value of the counter.
-func (c *counter) Value() int64 {
+// Val returns the current value of the counter.
+func (c *counter) Val() int64 {
 	return atomic.LoadInt64(&c.i)
 }

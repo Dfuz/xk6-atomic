@@ -13,6 +13,10 @@ help:
 	echo "Targets run by default are: `sed -n 's/^all: //p' ./Makefile | sed -e 's/ /, /g' | sed -e 's/\(.*\), /\1, and /'`"
 
 
+## test: Executes any tests.
+test:
+	go test -race -timeout 30s ./...
+
 ## build: Builds a custom 'k6' with the local extension. 
 build:
 	xk6 build --with $(shell go list -m)=.

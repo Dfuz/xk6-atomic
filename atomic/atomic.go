@@ -78,7 +78,7 @@ func (mi *ModuleInstance) newCounter(c goja.ConstructorCall) *goja.Object {
 	must(rt, obj.DefineDataProperty(
 		"add", rt.ToValue(cnt.Add), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
-		"value", rt.ToValue(cnt.Value), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+		"val", rt.ToValue(cnt.Val), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
 		"inc", rt.ToValue(cnt.Inc), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(

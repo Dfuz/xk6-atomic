@@ -1,8 +1,6 @@
 # xk6-atomic
 
-This extension is a simple PoC/wrapper that uses underline golang's atomic package to provide in-memory counters that could be shared between VUs.
-
-It could be used to share counters between VUs.
+This extension provides in-memory counters that could be shared between VUs.
 
 ```javascript
 import { Counter } from 'k6/x/atomic';
@@ -18,10 +16,10 @@ export default () => {
 
 The `Counter` class has the following methods:
 
-* `inc()` - increase the counter by 1 and return the current value
-* `dec()` - decrease the counter by 1 and return the current value
-* `add(n)` - increase (or decrease) the counter by `n` and return the current value
-* `value()` - return the current value
+* `inc()` - increases the counter by 1 and return the current value
+* `dec()` - decreases the counter by 1 and return the current value
+* `add(n)` - increases (or decrease) the counter by `n` and return the current value
+* `val()` - returns the current value
 
 See examples for more.
 
