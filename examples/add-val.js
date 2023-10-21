@@ -8,7 +8,9 @@ export default () => {
 
    console.log(`add 2 for counter1: ${counter1.add(2)}`);
    console.log(`add 1 for counter2: ${counter2.add(1)}`);
+}
 
-   console.log(`add 2 for counter1: ${counter1.val()}`);
-   console.log(`add 1 for counter2: ${counter2.val()}`);
+export function teardown(data) {
+   console.log(`teardown's value of counter1: ${counter1.val()}`);
+   console.log(`teardown's value of counter2: ${counter2.val()}`);
 }

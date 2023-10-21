@@ -19,7 +19,7 @@ func TestAtomicCounter_Inc(t *testing.T) {
 
 	ts := k6Tests.NewGlobalTestState(t)
 
-	script, err := os.ReadFile("../../examples/script.js") //nolint:forbidigo
+	script, err := os.ReadFile("../../examples/inc.js") //nolint:forbidigo
 	require.NoError(t, err)
 
 	require.NoError(t, afero.WriteFile(ts.FS, filepath.Join(ts.Cwd, "test.js"), []byte(script), 0o644))
@@ -58,6 +58,33 @@ func TestAtomicCounter_Dec(t *testing.T) {
 	for i := 1; i <= 20; i++ {
 		assert.Contains(t, stdout, fmt.Sprintf("current value is: -%d", i))
 	}
+
+	assert.Empty(t, ts.Stderr.String())
+}
+
+func TestAtomicCounter_AddAndVal(t *testing.T) {
+	t.Parallel()
+
+	ts := k6Tests.NewGlobalTestState(t)
+
+	script, err := os.ReadFile("../../examples/add-val.js") //nolint:forbidigo
+	require.NoError(t, err)
+
+	require.NoError(t, afero.WriteFile(ts.FS, filepath.Join(ts.Cwd, "test.js"), []byte(script), 0o644))
+	ts.CmdArgs = []string{"k6", "run", "-v", "--log-output=stdout", "--vus", "10", "-i", "10", filepath.Join(ts.Cwd, "test.js")}
+	ts.ExpectedExitCode = int(0) // success
+
+	cmd.ExecuteWithGlobalState(ts.GlobalState)
+
+	stdout := ts.Stdout.String()
+
+	for i := 1; i <= 10; i++ {
+		assert.Contains(t, stdout, fmt.Sprintf("counter1: %d", i*2))
+		assert.Contains(t, stdout, fmt.Sprintf("counter2: %d", i))
+	}
+
+	assert.Contains(t, stdout, "teardown's value of counter1: 20")
+	assert.Contains(t, stdout, "teardown's value of counter2: 10")
 
 	assert.Empty(t, ts.Stderr.String())
 }

@@ -21,7 +21,7 @@ The `Counter` class has the following methods:
 * `add(n)` - increases (or decrease) the counter by `n` and return the current value
 * `val()` - returns the current value
 
-See examples for more.
+See `examples` for more.
 
 ## Requirements
 
@@ -41,5 +41,5 @@ See examples for more.
 2. Run the example:
 
   ```shell
-  $ ./k6 run -i 10 --vus 4 examples/script.js
+  $ ./k6 run -i 10 --vus 4 examples/inc.js
   ```
