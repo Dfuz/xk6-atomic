@@ -4,7 +4,6 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/dop251/goja"
 	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/common"
 	"go.k6.io/k6/js/modules"
@@ -59,7 +58,7 @@ func (mi *ModuleInstance) Exports() modules.Exports {
 // newCounter is the constructor for the Counter class.
 // it either returns a goja object wrapping the counter or throws an error.
 // the counter either comes from the cache or is created.
-func (mi *ModuleInstance) newCounter(c goja.ConstructorCall) *sobek.Object {
+func (mi *ModuleInstance) newCounter(c sobek.ConstructorCall) *sobek.Object {
 	rt := mi.vu.Runtime()
 
 	id := c.Argument(0).ToString().String()

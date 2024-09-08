@@ -2,7 +2,7 @@
 package atomic
 
 import (
-	"github.com/olegbespalov/xk6-atomic/atomic"
+	"github.com/Dfuz/xk6-atomic/atomic"
 	"go.k6.io/k6/js/modules"
 )
 

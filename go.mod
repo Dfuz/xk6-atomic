@@ -1,4 +1,4 @@
-module github.com/olegbespalov/xk6-atomic
+module github.com/Dfuz/xk6-atomic
 
 go 1.19
 
