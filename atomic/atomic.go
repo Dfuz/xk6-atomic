@@ -4,7 +4,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/dop251/goja"
+	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/common"
 	"go.k6.io/k6/js/modules"
 )
@@ -58,7 +58,7 @@ func (mi *ModuleInstance) Exports() modules.Exports {
 // newCounter is the constructor for the Counter class.
 // it either returns a goja object wrapping the counter or throws an error.
 // the counter either comes from the cache or is created.
-func (mi *ModuleInstance) newCounter(c goja.ConstructorCall) *goja.Object {
+func (mi *ModuleInstance) newCounter(c sobek.ConstructorCall) *sobek.Object {
 	rt := mi.vu.Runtime()
 
 	id := c.Argument(0).ToString().String()
@@ -76,19 +76,19 @@ func (mi *ModuleInstance) newCounter(c goja.ConstructorCall) *goja.Object {
 
 	obj := rt.NewObject()
 	must(rt, obj.DefineDataProperty(
-		"add", rt.ToValue(cnt.Add), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+		"add", rt.ToValue(cnt.Add), sobek.FLAG_FALSE, sobek.FLAG_FALSE, sobek.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
-		"val", rt.ToValue(cnt.Val), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+		"val", rt.ToValue(cnt.Val), sobek.FLAG_FALSE, sobek.FLAG_FALSE, sobek.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
-		"inc", rt.ToValue(cnt.Inc), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+		"inc", rt.ToValue(cnt.Inc), sobek.FLAG_FALSE, sobek.FLAG_FALSE, sobek.FLAG_TRUE))
 	must(rt, obj.DefineDataProperty(
-		"dec", rt.ToValue(cnt.Dec), goja.FLAG_FALSE, goja.FLAG_FALSE, goja.FLAG_TRUE))
+		"dec", rt.ToValue(cnt.Dec), sobek.FLAG_FALSE, sobek.FLAG_FALSE, sobek.FLAG_TRUE))
 
 	return obj
 }
 
 // must is a small helper that will panic if err is not nil.
-func must(rt *goja.Runtime, err error) {
+func must(rt *sobek.Runtime, err error) {
 	if err != nil {
 		common.Throw(rt, err)
 	}
